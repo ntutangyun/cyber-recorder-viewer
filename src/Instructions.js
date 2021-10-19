@@ -196,9 +196,12 @@ function Instructions() {
         </ol>
 
         <h2>Author</h2>
-        <p>Apollo's 社区布道师 <strong>A_Web_Nerd</strong> (ntutangyun [at] gmail [dot] com)</p>
+        <p>Apollo's 社区布道师 <strong>Tang Yun</strong> (ntutangyun [at] gmail [dot] com)</p>
         <p>My current research interest is <strong>software testing of Autonomous vehicles</strong>. Feel free to drop
             me an email for research collaborations. :)</p>
+        <p>The repository address is https://github.com/ntutangyun/cyber-recorder-viewer.
+            Feel free to create forks and pull requests.</p>
+        <p>Kindly acknowledge if you use any code from this repository :)</p>
     </div>;
 }
 
