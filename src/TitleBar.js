@@ -1,36 +1,31 @@
 /* eslint-disable no-undef */
 import React from "react";
+import {readFileArrayBuffer, readFileText} from "./utils/ioUtils";
 
 const styles = {};
 
-function readFile(file) {
-    return new Promise(resolve => {
-        const reader = new FileReader();
-        reader.onload = (evt) => {
-            resolve(evt.target.result);
-        };
-        reader.readAsText(file);
-    });
-}
-
-function Header() {
+function TitleBar({recordParser, setProtoObj, setRecording}) {
     const onProtobufLibsSelected = async (e) => {
         console.log(e.target.files);
         console.log(Array.from(e.target.files));
 
         const fileContentList = [];
         for (const file of Array.from(e.target.files)) {
-            const fileContent = await readFile(file);
+            console.log(`processing: ${file.name}`);
+            const fileContent = await readFileText(file);
             fileContentList.push(fileContent);
         }
-
-        console.log(fileContentList);
 
         fileContentList.forEach(fileContent => {
             eval(fileContent);
         });
 
-        console.log(proto);
+        setProtoObj(proto);
+    };
+
+    const onRecordingFileSelected = async (e) => {
+        const arrayBuffer = await readFileArrayBuffer(e.target.files[0]);
+        setRecording(arrayBuffer);
     };
 
     return (
@@ -42,11 +37,10 @@ function Header() {
             </label>
             <label>
                 Select recording file
-                <input type="file"/>
+                <input type="file" onChange={onRecordingFileSelected} disabled={recordParser === null}/>
             </label>
-
         </header>
     );
 }
 
-export default Header;
+export default TitleBar;
