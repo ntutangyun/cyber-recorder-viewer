@@ -2,9 +2,7 @@ import "./App.css";
 import TitleBar from "./TitleBar";
 import {useEffect, useState} from "react";
 import {RecordParser} from "./utils/recordUtils";
-import SectionRenderer from "./SectionRenderer";
-
-const styles = {};
+import Instructions from "./Instructions";
 
 function App() {
     const [protoObj, setProtoObj] = useState(null);
@@ -30,10 +28,17 @@ function App() {
     return (
         <div className="App">
             <TitleBar recordParser={recordParser} setProtoObj={setProtoObj} setRecording={setRecording}/>
+            <Instructions/>
             {
                 sectionList && sectionList.length > 0 &&
                 sectionList.map((section, i) =>
-                    <SectionRenderer section={section} key={i} recordParser={recordParser}/>
+                    <div key={i}>
+                        <h1>Section {section.typeName}</h1>
+                        <hr/>
+                        <div>
+                            {section.renderSection()}
+                        </div>
+                    </div>
                 )
             }
         </div>

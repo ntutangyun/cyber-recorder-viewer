@@ -11,6 +11,12 @@
     justify-content: space-between;
 }
 
+.instruction-table td {
+    padding: 0.5rem 1rem;
+    vertical-align: top;
+    text-align: left;
+}
+
 .byte-table td {
     padding: 0 2rem;
     vertical-align: top;
